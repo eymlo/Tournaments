@@ -1,0 +1,13 @@
+*.un~
+*.swp
+.DS_Store
+*.xcuserdatad/
+tmp/
+build/
+log/
+log/*
+*.swo
+public/system/*
+.bundle/config
+update.sh
+vendor/bundle/
