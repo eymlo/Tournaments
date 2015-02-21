@@ -13,4 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require foundation
+//= require turbolinks
+//= require jquery-ui
+//= require jquery.modal
+//= require foundation-datetimepicker
+//= require jquery.remotipart
+//= require wice_grid
+//= require fullcalendar
 //= require_tree .
+
+$(function(){ $(document).foundation(); });
