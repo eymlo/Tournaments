@@ -13,8 +13,30 @@
   </head>
 
   <body>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+          <h1>
+            <a href='/'>Tournaments
+              <% if Rails.env.downcase != 'production' %>
+                <big style="color: red"><%= Rails.env.capitalize %></big>
+              <% end %>
+            </a>
+          </h1>
+        </li>
+      </ul>
 
-    <%= yield %>
+      <section class="top-bar-section">
 
+        <!-- Left Nav Section -->
+        <ul class="left">
+          <li><a href="#"><%= link_to "Leagues", leagues_path %></a></li>
+        </ul>
+      </section>
+    </nav>
+    <div class='row'>
+      <div class='columns large-10 large-centered small-12'>
+      <%= yield %>
+    </div>
   </body>
 </html>
