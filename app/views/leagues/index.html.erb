@@ -1,5 +1,6 @@
-<h1>Listing leagues</h1>
+<h1>Leagues</h1>
 
+<% if @leagues.present? %>
 <table>
   <thead>
     <tr>
@@ -7,6 +8,7 @@
       <th>Description</th>
       <th>Start date</th>
       <th>End date</th>
+      <th>Status</th>
       <th></th>
       <th></th>
       <th></th>
@@ -18,8 +20,9 @@
       <tr>
         <td><%= league.name %></td>
         <td><%= league.description %></td>
-        <td><%= league.start_date %></td>
-        <td><%= league.end_date %></td>
+        <td><%= league.start_date.to_date %></td>
+        <td><%= league.end_date.to_date %></td>
+        <td><%= league.state %></td>
         <td><%= link_to 'Show', league %></td>
         <td><%= link_to 'Edit', edit_league_path(league) %></td>
         <td><%= link_to 'Destroy', league, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -28,6 +31,10 @@
   </tbody>
 </table>
 
+<% else %>
+  <p> No leagues have been created yet... </p>
+<% end %>
+
 <br>
 
-<%= link_to 'New League', new_league_path %>
+<%= link_to 'New League', new_league_path, :class => "button" %>

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Leagues" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -30,13 +30,11 @@
         <!-- Left Nav Section -->
         <ul class="left">
           <li><a href="#"><%= link_to "Leagues", leagues_path %></a></li>
-          <li><a href="#"><%= link_to "Teams", teams_path %></a></li>
-          <li><a href="#"><%= link_to "Games", games_path %></a></li>
         </ul>
       </section>
     </nav>
     <div class='row'>
-      <div class='columns large-10 large-centered small-12'>
+      <div class='columns large-12'>
       <%= yield %>
     </div>
   </body>

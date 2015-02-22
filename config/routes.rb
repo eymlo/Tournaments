@@ -5,5 +5,10 @@ Tournaments::Application.routes.draw do
 
   resources :teams
 
-  resources :leagues
+  resources :leagues do
+    member do
+      get :standings
+      put :start
+    end
+  end
 end

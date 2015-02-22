@@ -8,4 +8,6 @@ class Game < ActiveRecord::Base
 
   validates :home_team, :presence => true
   validates :away_team, :presence => true
+
+  scope :completed_games, where("home_score is not null and away_score is not null")
 end

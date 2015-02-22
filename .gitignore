@@ -11,3 +11,4 @@ public/system/*
 .bundle/config
 update.sh
 vendor/bundle/
+.env

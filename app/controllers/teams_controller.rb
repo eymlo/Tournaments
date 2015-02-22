@@ -1,11 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
-  # GET /teams
-  def index
-    @teams = Team.all
-  end
-
   # GET /teams/1
   def show
   end
@@ -23,17 +18,28 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
 
-    if @team.save
-      redirect_to @team, notice: 'Team was successfully created.'
-    else
-      render action: 'new'
+    respond_to do |format|
+      if @team.save
+        format.html {
+          redirect_to @team.league, notice: 'Team was successfully created.'
+        }
+        format.json {
+          render :json => @team, :status => :created, :location => @team
+        }
+      else
+        format.html { redirect_to @team.league }
+        format.json {
+          render :json => @team.errors, :status => :unprocessable_entity
+        }
+      end
     end
   end
 
   # PATCH/PUT /teams/1
   def update
     if @team.update(team_params)
-      redirect_to @team, notice: 'Team was successfully updated.'
+      debugger
+      redirect_to @team.league, notice: 'Team was successfully updated.'
     else
       render action: 'edit'
     end
@@ -41,8 +47,16 @@ class TeamsController < ApplicationController
 
   # DELETE /teams/1
   def destroy
-    @team.destroy
-    redirect_to teams_url, notice: 'Team was successfully destroyed.'
+    respond_to do |format|
+      @team.destroy
+      format.html {
+        debugger
+        redirect_to league_url(@team.league), notice: 'Team was successfully destroyed.'
+      }
+      format.json {
+        render :json => @team
+      }
+    end
   end
 
   private

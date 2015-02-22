@@ -43,8 +43,9 @@ gem 'foundation-rails'
 gem 'foundation_rails_helper'
 gem 'jquery-ui-rails'
 gem 'jquery-modal-rails'
-gem 'mysql2'
+gem 'pg'
 gem 'wice_grid'
+gem 'state_machine'
 
 gem 'rails_12factor', group: :production
 

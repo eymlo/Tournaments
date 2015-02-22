@@ -1,5 +1,6 @@
 class LeaguesController < ApplicationController
-  before_action :set_league, only: [:show, :edit, :update, :destroy]
+  before_action :set_league, only: [:show, :edit, :update, :destroy, :start,
+                                    :standings]
 
   # GET /leagues
   def index
@@ -8,6 +9,7 @@ class LeaguesController < ApplicationController
 
   # GET /leagues/1
   def show
+    @league_teams = @league.teams if @league.present?
   end
 
   # GET /leagues/new
@@ -37,6 +39,15 @@ class LeaguesController < ApplicationController
     else
       render action: 'edit'
     end
+  end
+
+  def start
+    @league.start
+    redirect_to standings_league_url(@league)
+  end
+
+  def standings
+
   end
 
   # DELETE /leagues/1
