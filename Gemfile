@@ -43,7 +43,7 @@ gem 'foundation-rails'
 gem 'foundation_rails_helper'
 gem 'jquery-ui-rails'
 gem 'jquery-modal-rails'
-gem 'pg'
+gem 'mysql2'
 gem 'wice_grid'
 gem 'state_machine'
 

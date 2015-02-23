@@ -2,22 +2,22 @@
 
 <p>
   <strong>Start time:</strong>
-  <%= @game.start_time %>
+  <%= @game.start_time.to_date %>
 </p>
 
 <p>
   <strong>End time:</strong>
-  <%= @game.end_time %>
+  <%= @game.end_time.to_date %>
 </p>
 
 <p>
   <strong>Home team:</strong>
-  <%= @game.home_team %>
+  <%= @game.home_team.name %>
 </p>
 
 <p>
   <strong>Away team:</strong>
-  <%= @game.away_team %>
+  <%= @game.away_team.name %>
 </p>
 
 <p>

@@ -7,30 +7,30 @@ class Team < ActiveRecord::Base
   # FIXME: Change the data model to avoid doing these queries
   def games_played
     @games_played = self.league.games.completed_games.where(
-                      "home_team_id = ? or away_team_id = ?", self.id, self.id
+                      "home_team_id = ? OR away_team_id = ?", self.id, self.id
                     ).count
   end
 
   def wins
     @wins ||= self.league.games.completed_games.where(
-                "(home_team_id = ? and home_score > away_score) or
-                (away_team_id = ? and away_score > home_score)",
+                "(home_team_id = ? AND home_score > away_score) OR
+                (away_team_id = ? AND away_score > home_score)",
                 self.id, self.id
               ).count
   end
 
   def losses
     @losses ||= self.league.games.completed_games.where(
-                  "(home_team_id = ? and home_score < away_score) or
-                  (away_team_id = ? and away_score < home_score)",
+                  "(home_team_id = ? AND home_score < away_score) OR
+                  (away_team_id = ? AND away_score < home_score)",
                   self.id, self.id
                 ).count
   end
 
   def ties
     @ties ||= self.league.games.completed_games.where(
-                "(home_team_id = ? and home_score = away_score) or
-                (away_team_id = ? and away_score = home_score)",
+                "(home_team_id = ? AND home_score = away_score) OR
+                (away_team_id = ? AND away_score = home_score)",
                 self.id, self.id
               ).count
   end

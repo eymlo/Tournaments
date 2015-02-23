@@ -24,7 +24,6 @@
 
 <em> Note: League points are calculated using (3*wins) + ties </em>
 
-
 <h2> League Games </h2>
 
 <table>
@@ -35,13 +34,13 @@
     <th> Away Team Score </th>
     <th> </th>
   </tr>
-  <tr>
-    <% @league.games.each do |g| %>
+  <% @league.games.each do |g| %>
+    <tr>
       <td><%= g.home_team.name %></td>
       <td><%= g.away_team.name %></td>
       <td><%= g.home_score %></td>
       <td><%= g.away_score %></td>
       <td> Edit </td>
-    <% end %>
-  </tr>
+    </tr>
+  <% end %>
 </table>

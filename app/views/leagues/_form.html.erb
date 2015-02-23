@@ -47,6 +47,59 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="medium-8 columns">
+      <div class="row">
+        <div class="medium-2 columns">
+          <%= f.label :games_per_team, :class => "right inline" %>
+        </div>
+        <div class="medium-6 columns end">
+          <%= f.text_field :games_per_team, :label => false %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="medium-8 columns">
+      <div class="row">
+        <div class="medium-2 columns">
+          <%= f.label :games_per_day, :class => "right inline" %>
+        </div>
+        <div class="medium-6 columns end">
+          <%= f.text_field :games_per_day, :label => false %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="medium-8 columns">
+      <div class="row">
+        <div class="medium-2 columns">
+          <%= f.label :days_of_week, :class => "right inline" %>
+        </div>
+        <div class="medium-6 columns end">
+          <table>
+            <thead>
+              <tr>
+                <% Date::DAYNAMES.each do |d| %>
+                  <th><%= d %></th>
+                <% end %>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <% Date::DAYNAMES.each_with_index do |d, i| %>
+                  <td>
+                    <%= check_box_tag "days_of_week[#{i}]" %>
+                  </td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

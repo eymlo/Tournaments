@@ -9,6 +9,7 @@ Tournaments::Application.routes.draw do
     member do
       get :standings
       put :start
+      get :calendar
     end
   end
 end
