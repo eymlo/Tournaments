@@ -75,13 +75,15 @@ class League < ActiveRecord::Base
 
       # Step 2) Assign date to games
       # Find the closest date to start based on days of week
-      date = Time.now.change(:hour => 12,
-                             :minute => 0,
-                             :second => 0) + self.days_of_week.map do |dw|
+      days_away = self.days_of_week.map do |dw|
         days_away = dw - Time.now.wday
         days_away = days_away.abs + 7 if days_away < 0
         days_away
       end.min.days
+
+      date = Time.now.change(:hour => 12,
+                             :minute => 0,
+                             :second => 0) + days_away
       games_assigned_for_date = 0
 
       unassigned_games = teams_games.clone
@@ -90,14 +92,16 @@ class League < ActiveRecord::Base
           [team, games.count]
         end]
 
+        # Find the team with maximum # of unassigned games
         team = teams_unassigned_count.keys.shuffle.max do |x, y|
           teams_unassigned_count[x] <=> teams_unassigned_count[y]
         end
 
+        # Within the unassigned games of the selected team,
+        # find the opponment/game with the max # of unassigned games
         potential_game_opponents = unassigned_games[team].map do |game|
           [game, ([game.home_team, game.away_team] - [team]).first]
         end
-
         game = potential_game_opponents.max do |x, y|
           teams_unassigned_count[x.second] <=>  teams_unassigned_count[y.second]
         end.first
@@ -117,10 +121,12 @@ class League < ActiveRecord::Base
             (self.days_of_week.index(date.wday) + 1) % self.days_of_week.count
           ]
 
-          days_away = date.wday - next_wday
+          days_away = next_wday - date.wday
           days_away += 7 if days_away < 0
 
           date += days_away.days
+          raise if date.wday == 0
+          games_assigned_for_date = 0
         end
       end
     end
